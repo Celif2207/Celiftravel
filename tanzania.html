@@ -255,7 +255,62 @@
 
   footer a { color: var(--clay); text-decoration: none; }
 
-  .photo-placeholder {
+  .toc {
+    background: var(--sand);
+    border: 1px solid rgba(196,98,45,0.2);
+    border-left: 3px solid var(--terra);
+    border-radius: 0 1rem 1rem 0;
+    padding: 1.25rem 1.5rem;
+    margin: 0 0 2.5rem;
+  }
+
+  .toc-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: toc-counter;
+  }
+
+  .toc ol li {
+    counter-increment: toc-counter;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.4rem 0;
+    border-bottom: 0.5px solid rgba(196,98,45,0.1);
+  }
+
+  .toc ol li:last-child { border-bottom: none; }
+
+  .toc ol li::before {
+    content: counter(toc-counter, decimal-leading-zero);
+    font-size: 0.7rem;
+    color: var(--terra);
+    font-weight: 500;
+    flex-shrink: 0;
+    width: 20px;
+  }
+
+  .toc ol li a {
+    font-size: 0.9rem;
+    color: var(--brown);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s;
+    line-height: 1.4;
+  }
+
+  .toc ol li a:hover { color: var(--terra); }
     position: relative;
     width: 100%;
     border-radius: 1rem;
@@ -368,6 +423,17 @@
 <!-- ARTICLE CONTENT -->
 <div class="article-content">
 
+  <nav class="toc">
+    <span class="toc-title">Table of contents</span>
+    <ol>
+      <li><a href="#safari">The safari: where words fail</a></li>
+      <li><a href="#zanzibar">Zanzibar: paradise found</a></li>
+      <li><a href="#food">The food: an adventure on its own</a></li>
+      <li><a href="#practical">Practical info & what to pack</a></li>
+      <li><a href="#verdict">Would we go back?</a></li>
+    </ol>
+  </nav>
+
   <p>There are trips you plan for months, and then there are trips that simply grab you by the soul and never let go. Tanzania was the latter for us. From the moment our plane touched down in Dar es Salaam, we knew this was going to be different from anything we had ever experienced before.</p>
 
   <p>We had been dreaming about Africa for years. Safari documentaries on lazy Sunday evenings, Instagram reels of endless golden plains, friends coming back with that look in their eyes — the one that says "I've seen something I can't quite put into words." We finally booked it on a Tuesday night at 11pm, slightly impulsive, completely worth it.</p>
@@ -381,7 +447,7 @@
     <p>"The Serengeti doesn't care about your plans. It operates on its own timeline, and you simply adapt."</p>
   </div>
 
-  <h2>The safari: where words fail</h2>
+  <h2 id="safari">The safari: where words fail</h2>
 
   <p>We joined a three-day camping safari through the Serengeti and Ngorongoro Crater. Nothing — absolutely nothing — could have prepared us for the scale of it. On our very first morning, before we'd even finished our coffee, our guide Moses pointed silently to the left. A lion. Maybe ten metres away. Lying in the grass like he owned the entire planet (which, to be fair, he probably does).</p>
 
@@ -407,7 +473,7 @@
 
   <div class="section-divider">· · ·</div>
 
-  <h2>Zanzibar: paradise found</h2>
+  <h2 id="zanzibar">Zanzibar: paradise found</h2>
 
   <p>After the raw intensity of the safari, Zanzibar felt like the universe offering us a reward. White sand so fine it squeaks under your feet. Water so clear and warm you forget you're in the ocean and not a swimming pool. We dropped our bags at a small guesthouse in Stone Town and immediately walked straight into the sea with our clothes on. We had zero regrets.</p>
 
@@ -428,7 +494,7 @@
 
   <div class="section-divider">· · ·</div>
 
-  <h2>The food: an adventure on its own</h2>
+  <h2 id="food">The food: an adventure on its own</h2>
 
   <p>Tanzanian food deserves its own article — and we will write one. But for now: pilau rice spiced with cardamom and cloves, nyama choma (grilled meat eaten with your hands around a communal table), coconut fish curry that ruins all other fish dishes for you permanently, and the freshest tropical fruit you will ever put in your mouth.</p>
 
@@ -447,7 +513,7 @@
 
   <div class="section-divider">· · ·</div>
 
-  <h2>Practical info for adventurers</h2>
+  <h2 id="practical">Practical info for adventurers</h2>
 
   <div class="tip-box">
     <span class="tip-box-title">What you need to know</span>
@@ -461,7 +527,7 @@
     </ul>
   </div>
 
-  <h2>Would we go back?</h2>
+  <h2 id="verdict">Would we go back?</h2>
 
   <p>Without a single second of hesitation. Tanzania got under our skin in a way that very few places ever have. There is something about standing in the Serengeti at dawn, watching the light turn the grass gold while a family of elephants moves silently in the distance, that recalibrates everything. Your problems feel smaller. Your gratitude feels bigger. Your list of places to return to gets one destination longer.</p>
 
