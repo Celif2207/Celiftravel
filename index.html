@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Celif Travel — Two souls, endless roads</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F5ECD7;
+    --terra: #C4622D;
+    --terra-dark: #8B3D18;
+    --terra-light: #E8845A;
+    --clay: #D4956A;
+    --cream: #FAF6EF;
+    --brown: #3D2010;
+    --muted: #8C6A50;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--brown);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(196,98,45,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--terra-dark);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--terra); font-style: italic; }
+
+  nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  nav ul a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--terra); }
+
+  /* HERO */
+  .hero {
+    min-height: 88vh;
+    background: var(--sand);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 4rem 3rem;
+    gap: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: rgba(196,98,45,0.08);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    left: 30%;
+    bottom: -60px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(196,98,45,0.06);
+  }
+
+  .hero-text { position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terra);
+    background: rgba(196,98,45,0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.15;
+    color: var(--terra-dark);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terra);
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--terra);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 3rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--terra-dark); transform: translateY(-1px); }
+
+  .btn-secondary {
+    color: var(--terra-dark);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+
+  .btn-secondary:hover { gap: 0.7rem; }
+
+  .hero-visual {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-map {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1;
+    background: rgba(196,98,45,0.07);
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(196,98,45,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .map-dots {
+    position: absolute;
+    inset: 0;
+  }
+
+  .map-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--terra);
+    border-radius: 50%;
+    border: 2px solid var(--white);
+  }
+
+  .map-dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: rgba(196,98,45,0.2);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.6); opacity: 0; }
+  }
+
+  .map-label {
+    position: absolute;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--terra-dark);
+    white-space: nowrap;
+    background: var(--white);
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(196,98,45,0.2);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(196,98,45,0.15);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--terra);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* SECTION */
+  section { padding: 5rem 3rem; }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--terra-dark);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+
+  /* POSTS GRID */
+  .posts { background: var(--white); }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(196,98,45,0.1);
+    background: var(--cream);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(61,32,16,0.1);
+  }
+
+  .post-img {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .post-body { padding: 1.25rem; }
+
+  .post-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra);
+    background: rgba(196,98,45,0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .post-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--terra-dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+
+  .post-excerpt {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(196,98,45,0.1);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* ABOUT */
+  .about { background: var(--sand); }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-avatars {
+    display: flex;
+    gap: -1rem;
+    position: relative;
+    justify-content: center;
+  }
+
+  .avatar-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--white);
+    border: 4px solid var(--sand);
+    flex-shrink: 0;
+  }
+
+  .avatar-e { background: var(--terra); margin-right: -20px; z-index: 2; position: relative; }
+  .avatar-c { background: var(--terra-dark); }
+
+  .about-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--terra-dark);
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  /* DESTINATIONS */
+  .destinations-strip {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .dest-pill {
+    background: var(--white);
+    border: 1px solid rgba(196,98,45,0.2);
+    color: var(--terra-dark);
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .dest-pill:hover { background: var(--terra); color: var(--white); border-color: var(--terra); }
+
+  /* NEWSLETTER */
+  .newsletter {
+    background: var(--terra-dark);
+    text-align: center;
+    padding: 5rem 3rem;
+  }
+
+  .newsletter .section-label { color: var(--clay); }
+  .newsletter .section-title { color: var(--white); }
+  .newsletter p { color: rgba(255,255,255,0.6); max-width: 420px; margin: 0 auto 2rem; font-weight: 300; font-size: 1rem; line-height: 1.6; }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .newsletter-form input {
+    padding: 0.85rem 1.5rem;
+    border-radius: 3rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    width: 280px;
+    outline: none;
+  }
+
+  .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .newsletter-form input:focus { border-color: rgba(255,255,255,0.5); }
+
+  .newsletter-form button {
+    background: var(--terra-light);
+    color: var(--white);
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 3rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .newsletter-form button:hover { background: var(--clay); }
+
+  /* FOOTER */
+  footer {
+    background: var(--brown);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2rem 3rem;
+    font-size: 0.8rem;
+    font-weight: 300;
+  }
+
+  footer a { color: var(--clay); text-decoration: none; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-text { animation: fadeUp 0.8s ease both; }
+  .hero-visual { animation: fadeUp 0.8s ease 0.2s both; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { gap: 1rem; }
+    .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; min-height: auto; }
+    .hero-visual { display: flex; justify-content: center; margin-top: 1.5rem; }
+    .hero-map { width: 100%; max-width: 360px; }
+    section { padding: 3rem 1.5rem; }
+    .about-inner { grid-template-columns: 1fr; }
+    .about-avatars { margin-bottom: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">celif<span>travel</span></a>
+  <ul>
+    <li><a href="#posts">Blog</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#about">About us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-tag">A couple's travel journal</span>
+    <h1>Two souls,<br><em>endless roads</em></h1>
+    <p>We're Celif — a couple based in Germany with an unstoppable passion for exploring every corner of this beautiful world.</p>
+    <div class="hero-btns">
+      <a href="#posts" class="btn-primary">Read our stories</a>
+      <a href="#about" class="btn-secondary">Meet us →</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">12+</span>
+        <span class="stat-label">Countries</span>
+      </div>
+      <div>
+        <span class="stat-num">3</span>
+        <span class="stat-label">Continents</span>
+      </div>
+      <div>
+        <span class="stat-num">∞</span>
+        <span class="stat-label">Memories</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-map">
+      <svg width="100%" viewBox="0 0 420 280" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Kontinente (vereinfacht) -->
+        <!-- Europa -->
+        <path d="M185,60 Q195,55 205,58 Q210,62 208,70 Q200,75 190,72 Q183,68 185,60Z" fill="#C4622D" opacity=".12"/>
+        <!-- Afrika -->
+        <path d="M190,80 Q205,78 212,85 Q218,100 215,120 Q210,138 200,142 Q190,145 183,138 Q176,125 178,105 Q180,88 190,80Z" fill="#C4622D" opacity=".12"/>
+        <!-- Asien -->
+        <path d="M210,50 Q240,44 270,48 Q295,52 305,65 Q310,78 300,90 Q285,98 265,95 Q245,92 228,85 Q212,78 210,65 Q208,57 210,50Z" fill="#C4622D" opacity=".12"/>
+        <!-- Südostasien -->
+        <path d="M295,90 Q310,88 318,96 Q322,105 315,112 Q305,116 295,110 Q288,103 292,96 Q293,92 295,90Z" fill="#C4622D" opacity=".1"/>
+        <!-- Amerika Nord -->
+        <path d="M80,50 Q105,45 115,55 Q120,68 112,82 Q100,90 85,85 Q72,78 74,64 Q76,55 80,50Z" fill="#C4622D" opacity=".12"/>
+        <!-- Amerika Süd -->
+        <path d="M95,100 Q112,96 118,108 Q122,125 118,148 Q112,165 100,168 Q88,165 83,150 Q80,132 84,115 Q88,104 95,100Z" fill="#C4622D" opacity=".12"/>
+        <!-- Australien -->
+        <path d="M320,140 Q338,136 345,144 Q350,155 344,164 Q334,170 322,165 Q314,157 316,148 Q317,143 320,140Z" fill="#C4622D" opacity=".1"/>
+
+        <!-- Ozeane Hintergrund -->
+        <rect width="420" height="280" fill="none"/>
+
+        <!-- PUNKTE mit Labels -->
+
+        <!-- Istanbul -->
+        <g>
+          <circle cx="212" cy="68" r="4" fill="#C4622D" opacity=".8"/>
+          <circle cx="212" cy="68" r="7" fill="#C4622D" opacity=".2">
+            <animate attributeName="r" values="4;9;4" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <text x="218" y="65" font-size="7" fill="#8B3D18" font-family="DM Sans, sans-serif" font-weight="500">Istanbul</text>
+        </g>
+
+        <!-- Cappadocia -->
+        <g>
+          <circle cx="218" cy="74" r="4" fill="#C4622D" opacity=".8"/>
+          <circle cx="218" cy="74" r="7" fill="#C4622D" opacity=".2">
+            <animate attributeName="r" values="4;9;4" dur="2.3s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.3;0;0.3" dur="2.3s" repeatCount="indefinite"/>
+          </circle>
+          <text x="224" y="78" font-size="7" fill="#8B3D18" font-family="DM Sans, sans-serif" font-weight="500">Cappadocia</text>
+        </g>
+
+        <!-- Tanzania -->
+        <a href="tanzania.html">
+          <g style="cursor:pointer;">
+            <circle cx="218" cy="128" r="5" fill="#C4622D" opacity=".9"/>
+            <circle cx="218" cy="128" r="8" fill="#C4622D" opacity=".25">
+              <animate attributeName="r" values="5;11;5" dur="1.8s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.3;0;0.3" dur="1.8s" repeatCount="indefinite"/>
+            </circle>
+            <text x="225" y="126" font-size="7.5" fill="#8B3D18" font-family="DM Sans, sans-serif" font-weight="600">Tanzania</text>
+          </g>
+        </a>
+
+        <!-- Sri Lanka -->
+        <g>
+          <circle cx="282" cy="104" r="4" fill="#C4622D" opacity=".8"/>
+          <circle cx="282" cy="104" r="7" fill="#C4622D" opacity=".2">
+            <animate attributeName="r" values="4;9;4" dur="2.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.3;0;0.3" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+          <text x="256" y="101" font-size="7" fill="#8B3D18" font-family="DM Sans, sans-serif" font-weight="500">Sri Lanka</text>
+        </g>
+
+        <!-- Thailand -->
+        <g>
+          <circle cx="298" cy="96" r="4" fill="#C4622D" opacity=".8"/>
+          <circle cx="298" cy="96" r="7" fill="#C4622D" opacity=".2">
+            <animate attributeName="r" values="4;9;4" dur="2.1s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.3;0;0.3" dur="2.1s" repeatCount="indefinite"/>
+          </circle>
+          <text x="304" y="94" font-size="7" fill="#8B3D18" font-family="DM Sans, sans-serif" font-weight="500">Thailand</text>
+        </g>
+
+        <!-- Bali -->
+        <g>
+          <circle cx="308" cy="132" r="4" fill="#C4622D" opacity=".8"/>
+          <circle cx="308" cy="132" r="7" fill="#C4622D" opacity=".2">
+            <animate attributeName="r" values="4;9;4" dur="2.7s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.3;0;0.3" dur="2.7s" repeatCount="indefinite"/>
+          </circle>
+          <text x="314" y="130" font-size="7" fill="#8B3D18" font-family="DM Sans, sans-serif" font-weight="500">Bali</text>
+        </g>
+
+        <!-- Peru -->
+        <g>
+          <circle cx="100" cy="140" r="4" fill="#C4622D" opacity=".8"/>
+          <circle cx="100" cy="140" r="7" fill="#C4622D" opacity=".2">
+            <animate attributeName="r" values="4;9;4" dur="2.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.3;0;0.3" dur="2.4s" repeatCount="indefinite"/>
+          </circle>
+          <text x="106" y="138" font-size="7" fill="#8B3D18" font-family="DM Sans, sans-serif" font-weight="500">Peru</text>
+        </g>
+
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- POSTS -->
+<section class="posts" id="posts">
+  <span class="section-label">Latest stories</span>
+  <h2 class="section-title">From our journal</h2>
+  <p class="section-sub">Every trip has a story. Here are the ones we couldn't wait to share with you.</p>
+
+  <div class="posts-grid">
+
+    <!-- Tanzania — echter Artikel -->
+    <a class="post-card" href="tanzania.html">
+      <div class="post-img" style="background:#FAEEDA;">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="18" r="8" fill="#EF9F27" opacity=".7"/>
+          <polygon points="40,10 52,48 28,48" fill="#8B3D18" opacity=".12"/>
+          <ellipse cx="22" cy="56" rx="14" ry="6" fill="#C4622D" opacity=".2"/>
+          <circle cx="16" cy="50" r="6" fill="#C4622D" opacity=".18"/>
+          <path d="M5,68 Q20,62 35,68 Q50,74 65,68" stroke="#1D9E75" stroke-width="1.5" fill="none" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="post-body">
+        <span class="post-tag">Adventure — Africa</span>
+        <h3 class="post-title">Tanzania: Lions, Spices & the Trip That Changed Everything</h3>
+        <p class="post-excerpt">Safari in the Serengeti, spice markets in Stone Town and the most beautiful beaches we've ever seen.</p>
+        <div class="post-meta">
+          <span>Celif</span>
+          <span>15 min read</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Sri Lanka -->
+    <a class="post-card" href="#" style="opacity:0.75;">
+      <div class="post-img" style="background:#E1F5EE;">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="45" rx="16" ry="24" fill="#1D9E75" opacity=".2"/>
+          <ellipse cx="40" cy="45" rx="10" ry="16" fill="#1D9E75" opacity=".2"/>
+          <rect x="28" y="52" width="24" height="8" rx="4" fill="#C4622D" opacity=".3"/>
+          <circle cx="32" cy="56" r="4" fill="#EF9F27" opacity=".5"/>
+          <circle cx="48" cy="56" r="4" fill="#EF9F27" opacity=".5"/>
+          <rect x="36" y="48" width="8" height="12" rx="1" fill="#8B3D18" opacity=".3"/>
+          <path d="M20,68 Q40,60 60,68" stroke="#1D9E75" stroke-width="1.5" fill="none" opacity=".3"/>
+        </svg>
+      </div>
+      <div class="post-body">
+        <span class="post-tag">Adventure — Asia</span>
+        <h3 class="post-title">Sri Lanka by Tuk Tuk — the slow way around the island</h3>
+        <p class="post-excerpt">Tea plantations, wild elephants and chaotic tuk tuk rides through jungle roads. Sri Lanka on our own terms.</p>
+        <div class="post-meta">
+          <span>Celif</span>
+          <span>Coming soon</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Thailand + Malaysia -->
+    <a class="post-card" href="#" style="opacity:0.75;">
+      <div class="post-img" style="background:#FAEEDA;">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <rect x="15" y="40" width="22" height="28" rx="2" fill="#C4622D" opacity=".2"/>
+          <polygon points="26,20 40,40 12,40" fill="#C4622D" opacity=".25"/>
+          <polygon points="26,28 36,40 16,40" fill="#C4622D" opacity=".15"/>
+          <rect x="43" y="44" width="22" height="24" rx="2" fill="#854F0B" opacity=".2"/>
+          <polygon points="54,26 66,44 42,44" fill="#854F0B" opacity=".22"/>
+          <path d="M10,68 Q40,62 70,68" stroke="#EF9F27" stroke-width="1.5" fill="none" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="post-body">
+        <span class="post-tag">Adventure — Asia</span>
+        <h3 class="post-title">Thailand & Malaysia: temples, street food & night markets</h3>
+        <p class="post-excerpt">Two countries, one backpack, zero plans. How we spent 4 weeks eating our way through Southeast Asia.</p>
+        <div class="post-meta">
+          <span>Celif</span>
+          <span>Coming soon</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Thailand Phuket -->
+    <a class="post-card" href="#" style="opacity:0.75;">
+      <div class="post-img" style="background:#E1F5EE;">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="55" rx="32" ry="10" fill="#1D9E75" opacity=".2"/>
+          <path d="M15,55 Q40,30 65,55" fill="#5DCAA5" opacity=".15"/>
+          <circle cx="40" cy="20" r="10" fill="#EF9F27" opacity=".6"/>
+          <path d="M10,55 Q25,48 40,55 Q55,62 70,55" stroke="#0F6E56" stroke-width="1.5" fill="none" opacity=".4"/>
+          <path d="M10,62 Q25,55 40,62 Q55,69 70,62" stroke="#0F6E56" stroke-width="1" fill="none" opacity=".25"/>
+        </svg>
+      </div>
+      <div class="post-body">
+        <span class="post-tag">Beach — Asia</span>
+        <h3 class="post-title">Phuket beyond the tourist trail — our hidden gems</h3>
+        <p class="post-excerpt">We skipped the party beaches and found secret coves, longtail boats and the best pad thai of our lives.</p>
+        <div class="post-meta">
+          <span>Celif</span>
+          <span>Coming soon</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Bali Flitterwochen -->
+    <a class="post-card" href="#" style="opacity:0.75;">
+      <div class="post-img" style="background:#FAECE7;">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <path d="M40,15 C40,15 55,28 55,42 C55,50 48,56 40,56 C32,56 25,50 25,42 C25,28 40,15 40,15Z" fill="#F0997B" opacity=".25"/>
+          <circle cx="40" cy="40" r="10" fill="#D85A30" opacity=".2"/>
+          <path d="M32,20 Q40,12 48,20" stroke="#D85A30" stroke-width="1.5" fill="none" opacity=".4"/>
+          <path d="M28,65 Q40,58 52,65" stroke="#C4622D" stroke-width="1.5" fill="none" opacity=".3"/>
+          <circle cx="30" cy="62" r="3" fill="#EF9F27" opacity=".5"/>
+          <circle cx="50" cy="62" r="3" fill="#EF9F27" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="post-body">
+        <span class="post-tag">Romantic — Asia</span>
+        <h3 class="post-title">Honeymoon in Bali — our most magical trip yet</h3>
+        <p class="post-excerpt">Rice terraces, temple sunsets and infinity pools. How we spent our honeymoon in the island of the gods.</p>
+        <div class="post-meta">
+          <span>Celif</span>
+          <span>Coming soon</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Peru -->
+    <a class="post-card" href="#" style="opacity:0.75;">
+      <div class="post-img" style="background:#FAEEDA;">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <polygon points="40,8 52,35 28,35" fill="#8B3D18" opacity=".2"/>
+          <polygon points="20,35 35,10 50,35" fill="#8B3D18" opacity=".12"/>
+          <polygon points="50,35 62,14 74,35" fill="#8B3D18" opacity=".1"/>
+          <rect x="10" y="35" width="60" height="30" rx="2" fill="#C4622D" opacity=".1"/>
+          <path d="M10,65 Q25,58 40,65 Q55,72 70,65" stroke="#1D9E75" stroke-width="1.5" fill="none" opacity=".35"/>
+          <circle cx="40" cy="50" r="5" fill="#EF9F27" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="post-body">
+        <span class="post-tag">Adventure — South America</span>
+        <h3 class="post-title">3 weeks in Peru & the Salkantay Trail to Machu Picchu</h3>
+        <p class="post-excerpt">Altitude sickness, rainbow mountains and the most epic trek of our lives. Peru will break you and rebuild you.</p>
+        <div class="post-meta">
+          <span>Celif</span>
+          <span>Coming soon</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Kappadokien -->
+    <a class="post-card" href="#" style="opacity:0.75;">
+      <div class="post-img" style="background:#FAEEDA;">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <!-- Heißluftballons -->
+          <ellipse cx="26" cy="28" rx="10" ry="13" fill="#C4622D" opacity=".3"/>
+          <rect x="22" y="40" width="8" height="5" rx="1" fill="#8B3D18" opacity=".3"/>
+          <ellipse cx="54" cy="22" rx="8" ry="11" fill="#EF9F27" opacity=".35"/>
+          <rect x="50" y="32" width="8" height="5" rx="1" fill="#8B3D18" opacity=".3"/>
+          <ellipse cx="40" cy="32" rx="7" ry="9" fill="#D85A30" opacity=".25"/>
+          <rect x="37" y="40" width="6" height="4" rx="1" fill="#8B3D18" opacity=".25"/>
+          <!-- Felsformationen -->
+          <polygon points="15,68 22,50 29,68" fill="#8B3D18" opacity=".2"/>
+          <polygon points="30,68 38,46 46,68" fill="#8B3D18" opacity=".18"/>
+          <polygon points="50,68 57,52 64,68" fill="#8B3D18" opacity=".2"/>
+          <rect x="10" y="68" width="60" height="5" fill="#C4622D" opacity=".1"/>
+        </svg>
+      </div>
+      <div class="post-body">
+        <span class="post-tag">City — Turkey</span>
+        <h3 class="post-title">2 days in Cappadocia — balloons, caves & fairy chimneys</h3>
+        <p class="post-excerpt">We woke up at 4am to watch a hundred hot air balloons rise over the valleys. Worth every sleepy minute.</p>
+        <div class="post-meta">
+          <span>Celif</span>
+          <span>Coming soon</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <div class="about-avatars">
+        <div class="avatar-circle avatar-e">E</div>
+        <div class="avatar-circle avatar-c">C</div>
+      </div>
+    </div>
+    <div>
+      <span class="section-label">Our story</span>
+      <p class="about-quote">"We don't travel to escape life — we travel so life doesn't escape us."</p>
+      <p class="about-text">Hey! We're Celif, a couple living in Germany with an incurable case of wanderlust. We've explored everything from budget backpacking trips to luxury escapes, family adventures to solo getaways. On this blog, we share honest stories, practical tips and a whole lot of love for this world.</p>
+      <a href="#" class="btn-primary">Read our full story</a>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section id="destinations">
+  <span class="section-label">Explore by destination</span>
+  <h2 class="section-title">Where we've been</h2>
+  <p class="section-sub">From Turkish coasts to Moroccan deserts — click a destination to explore our stories.</p>
+  <div class="destinations-strip">
+    <a href="tanzania.html" class="dest-pill">🇹🇿 Tanzania</a>
+    <a href="#" class="dest-pill">🇹🇷 Cappadocia</a>
+    <a href="#" class="dest-pill">🇱🇰 Sri Lanka</a>
+    <a href="#" class="dest-pill">🇹🇭 Thailand</a>
+    <a href="#" class="dest-pill">🇲🇾 Malaysia</a>
+    <a href="#" class="dest-pill">🇮🇩 Bali</a>
+    <a href="#" class="dest-pill">🇵🇪 Peru</a>
+    <a href="#" class="dest-pill">🌍 More coming soon</a>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <span class="section-label">Stay connected</span>
+  <h2 class="section-title" style="color:white;">Never miss an adventure</h2>
+  <p>Join our travel community and get new stories, tips and hidden gems delivered straight to your inbox.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="your@email.com">
+    <button type="button">Subscribe</button>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <a href="#">celiftravel.com</a> — Made with love & wanderlust by Celif</p>
+</footer>
+
+</body>
+</html>
